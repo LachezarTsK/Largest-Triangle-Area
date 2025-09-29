@@ -15,16 +15,16 @@ public class Solution
 
             for (int second = first + 1; second < points.Length - 1; ++second)
             {
-                triangleSides[0] = calculateDistance(points[first], points[second]);
+                triangleSides[0] = CalculateDistance(points[first], points[second]);
 
                 for (int third = second + 1; third < points.Length; ++third)
                 {
-                    triangleSides[1] = calculateDistance(points[first], points[third]);
-                    triangleSides[2] = calculateDistance(points[second], points[third]);
+                    triangleSides[1] = CalculateDistance(points[first], points[third]);
+                    triangleSides[2] = CalculateDistance(points[second], points[third]);
 
-                    if (isTriangle(triangleSides))
+                    if (IsTriangle(triangleSides))
                     {
-                        maxTriangleArea = Math.Max(maxTriangleArea, calculateArea(triangleSides));
+                        maxTriangleArea = Math.Max(maxTriangleArea, CalculateArea(triangleSides));
                     }
                 }
             }
@@ -33,14 +33,14 @@ public class Solution
         return maxTriangleArea;
     }
 
-    private double calculateDistance(int[] pointOne, int[] pointTwo)
+    private double CalculateDistance(int[] pointOne, int[] pointTwo)
     {
         double xDistance = pointOne[0] - pointTwo[0];
         double yDistance = pointOne[1] - pointTwo[1];
         return Math.Sqrt(xDistance * xDistance + yDistance * yDistance);
     }
 
-    private bool isTriangle(double[] triangleSides)
+    private bool IsTriangle(double[] triangleSides)
     {
         return (triangleSides[0] + triangleSides[1] > triangleSides[2])
                 && (triangleSides[0] + triangleSides[2] > triangleSides[1])
@@ -48,7 +48,7 @@ public class Solution
     }
 
     // Heron's formula
-    private double calculateArea(double[] triangleSides)
+    private double CalculateArea(double[] triangleSides)
     {
         double halfPerimeter = (triangleSides[0] + triangleSides[1] + triangleSides[2]) / 2;
         return Math.Sqrt(halfPerimeter
